@@ -11,6 +11,8 @@ function multipleString(char, reps) {
 
 // coverts integers to roman numerals
 function romanGeneral(numberArray) {
+
+  // integer to roman numeral mapping
   const numeralMapping = {
     '1': 'I', '2': 'II', '3': 'III', '4': 'IV', '5': 'V',
     '6': 'VI', '7': 'VII', '8': 'VIII', '9': 'IX',
@@ -20,6 +22,21 @@ function romanGeneral(numberArray) {
     '600': 'DC', '700': 'DCC', '800': 'DCCC', '900': 'CM',
     '1000': 'M', '2000': 'MM', '3000': 'MMM'
   }
+
+  // initialize roman numeral array
+  const romanArray = [];
+
+  // match integers with roman numerals
+  for (let int of numberArray) {
+    for (let [num, roman] of Object.entries(numeralMapping)) {
+      if (num === int) {
+        romanArray.push(roman);
+      }
+    }
+  }
+
+  // return roman numeral as string
+  return romanArray.join('');
 }
 
 // core function
@@ -64,7 +81,8 @@ function convertToRoman(num) {
   // reverse array to have logical order
   const numberMultiples = numberMultiplesRaw.reverse();
 
-  console.log(numberMultiples);
+  // return roman nummeral
+  return romanGeneral(numberMultiples);
 }
 
-convertToRoman(7204);
+convertToRoman(724);
